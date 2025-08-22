@@ -7,10 +7,10 @@ from utils import clean_text, chunk_text, chunk_documents, clean_text_with_parag
 import os
 
 def extract_text_from_pdf(pdf_path: str) -> List[Dict[str, any]]:
+
     documents = []
 
     pdf_document = fitz.open(pdf_path)
-    
     
     for page_num in range(len(pdf_document)):
         page = pdf_document[page_num]
@@ -21,6 +21,7 @@ def extract_text_from_pdf(pdf_path: str) -> List[Dict[str, any]]:
         page_text = ""
         previous_y = None
         
+        # Adding newline in between paragraphs
         for block in blocks["blocks"]:
             if "lines" in block:  # Text block
                 block_text = ""
@@ -47,10 +48,17 @@ def extract_text_from_pdf(pdf_path: str) -> List[Dict[str, any]]:
         # Clean up extra whitespace but preserve paragraph structure
         page_text = clean_text_with_paragraphs(page_text)
         
-        if page_text.strip():  # Only add non-empty pages
+        # Add page number to each page
+        if page_text.strip():
             documents.append({
                 "page_number": page_num + 1,
                 "text": page_text,
+                "source_type": "page"
+            })
+        else:
+            documents.append({
+                "page_number": page_num + 1,
+                "text": " ",
                 "source_type": "page"
             })
     
@@ -59,40 +67,8 @@ def extract_text_from_pdf(pdf_path: str) -> List[Dict[str, any]]:
     return documents
 
 
-def extract_tables_from_pdf(pdf_path: str) -> List[Dict[str, any]]:
-    tables = []
-    
-    try:
-        pdf_document = fitz.open(pdf_path)
-        
-        for page_num in range(len(pdf_document)):
-            page = pdf_document[page_num]
-            # PyMuPDF can find tables
-            tabs = page.find_tables()
-            
-            for table_idx, table in enumerate(tabs):
-                # Convert table to pandas DataFrame for easy handling
-                df = pd.DataFrame(table.extract())
-                
-                # Convert table to text representation
-                table_text = df.to_string(index=False)
-                
-                if table_text.strip():
-                    tables.append({
-                        "page_number": page_num + 1,
-                        "text": f"Table {table_idx + 1} from page {page_num + 1}:\n{table_text}",
-                        "source_type": "table"
-                    })
-        
-        pdf_document.close()
-        
-    except Exception as e:
-        print(f"Error extracting tables: {e}")
-    
-    return tables
-
-
 def get_embeddings(texts: List[str], api_key: str) -> List[List[float]]:
+
     genai.configure(api_key=api_key)
     
     embeddings = []
@@ -101,34 +77,35 @@ def get_embeddings(texts: List[str], api_key: str) -> List[List[float]]:
     # Process in batches to avoid rate limits
     batch_size = 10
     for i in range(0, len(texts), batch_size):
-        batch = texts[i:i + batch_size]
+
+        batch = []
+        end_index = min(i + batch_size, len(texts))
         
-        try:
-            # Embed each text in the batch
-            for text in batch:
-                result = genai.embed_content(
-                    model=model,
-                    content=text,
-                    task_type="retrieval_document"
-                )
-                embeddings.append(result['embedding'])
-                
-        except Exception as e:
-            print(f"Error generating embeddings: {e}")
-            # Return empty embeddings for failed texts
-            embeddings.extend([[0.0] * 768 for _ in batch])
-    
+        for j in range(i, end_index):
+            batch.append(texts[j])
+
+        # Embed each text in the batch
+        for text in batch:
+            result = genai.embed_content(
+                model=model,
+                content=text,
+                task_type="retrieval_document"
+            )
+            embeddings.append(result['embedding'])
+
     return embeddings
 
 
 def create_vector_store(persist_directory: str = "./chroma_db") -> chromadb.Collection:
+
     client = chromadb.PersistentClient(path=persist_directory)
     
     # Delete existing collection if it exists (for clean indexing)
-    try:
-        client.delete_collection(name="policy_documents")
-    except:
-        pass
+    collection_path = os.path.join(persist_directory, "chroma.sqlite3")
+    if os.path.exists(collection_path):
+        existing_collections = [col.name for col in client.list_collections()]
+        if "policy_documents" in existing_collections:
+            client.delete_collection(name="policy_documents")
     
     collection = client.create_collection(
         name="policy_documents",
@@ -139,17 +116,12 @@ def create_vector_store(persist_directory: str = "./chroma_db") -> chromadb.Coll
 
 
 def index_pdf(pdf_path: str, api_key: str, chunk_size: int = 800, chunk_overlap: int = 100) -> Tuple[str, int]:
+
     print("Extracting text from PDF...")
     documents = extract_text_from_pdf(pdf_path)
-    
-    print("Extracting tables from PDF...")
-    tables = extract_tables_from_pdf(pdf_path)
-    
-    # Combine all content
-    all_content = documents + tables
 
     with open("Data/extracted_content.pdf", "w", encoding="utf-8") as f:
-        for i, content in enumerate(all_content):
+        for i, content in enumerate(documents):
             f.write(f"=== Content {i+1} ===\n")
             f.write(f"Page: {content['page_number']}\n")
             f.write(f"Type: {content['source_type']}\n")
@@ -159,7 +131,7 @@ def index_pdf(pdf_path: str, api_key: str, chunk_size: int = 800, chunk_overlap:
     
     # Use the new chunk_documents function for better metadata handling
     print(f"Chunking documents with RecursiveCharacterTextSplitter...")
-    chunks_to_index = chunk_documents(all_content, chunk_size, chunk_overlap)
+    chunks_to_index = chunk_documents(documents, chunk_size, chunk_overlap)
     
     # Prepare for indexing with proper IDs
     for i, chunk in enumerate(chunks_to_index):
