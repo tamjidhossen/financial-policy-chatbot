@@ -1,3 +1,4 @@
-chromadb
 google-generativeai
+python-dotenv
+chromadb
 pymupdf
