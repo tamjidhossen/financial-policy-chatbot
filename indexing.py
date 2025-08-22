@@ -139,7 +139,7 @@ def index_pdf(pdf_path: str, api_key: str, chunk_size: int = 800, chunk_overlap:
         source_type = chunk.get("source_type", "text")
         chunk_idx = chunk.get("chunk_index", i)
         
-        chunk["id"] = f"page_{page_num}_{source_type}_{chunk_idx}"
+        chunk["id"] = f"page_{page_num}_chunk_{chunk_idx}"
         chunk["metadata"] = {
             "page": page_num,
             "source_type": source_type,
