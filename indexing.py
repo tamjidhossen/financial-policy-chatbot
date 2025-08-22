@@ -3,31 +3,59 @@ import fitz  # PyMuPDF
 import pandas as pd
 import chromadb
 import google.generativeai as genai
-from utils import clean_text, chunk_text, chunk_documents
+from utils import clean_text, chunk_text, chunk_documents, clean_text_with_paragraphs
 import os
 
 def extract_text_from_pdf(pdf_path: str) -> List[Dict[str, any]]:
     documents = []
+
+    pdf_document = fitz.open(pdf_path)
     
-    try:
-        pdf_document = fitz.open(pdf_path)
-        
-        for page_num in range(len(pdf_document)):
-            page = pdf_document[page_num]
-            text = page.get_text()
-            
-            if text.strip():  # Only add non-empty pages
-                documents.append({
-                    "page_number": page_num + 1,
-                    "text": clean_text(text),
-                    "source_type": "page"
-                })
-        
-        pdf_document.close()
-        
-    except Exception as e:
-        print(f"Error extracting text from PDF: {e}")
     
+    for page_num in range(len(pdf_document)):
+        page = pdf_document[page_num]
+        
+        # Get text blocks with layout information
+        blocks = page.get_text("dict")
+        
+        page_text = ""
+        previous_y = None
+        
+        for block in blocks["blocks"]:
+            if "lines" in block:  # Text block
+                block_text = ""
+                
+                for line in block["lines"]:
+                    line_text = ""
+                    current_y = line["bbox"][1]  # y-coordinate
+                    
+                    # Check for significant vertical gap (new paragraph)
+                    if previous_y is not None and current_y - previous_y > 10:
+                        block_text += "\n"
+                    
+                    for span in line["spans"]:
+                        line_text += span["text"]
+                    
+                    if line_text.strip():
+                        block_text += line_text.strip() + " "
+                    
+                    previous_y = current_y
+                
+                if block_text.strip():
+                    page_text += block_text.strip() + "\n\n"
+        
+        # Clean up extra whitespace but preserve paragraph structure
+        page_text = clean_text_with_paragraphs(page_text)
+        
+        if page_text.strip():  # Only add non-empty pages
+            documents.append({
+                "page_number": page_num + 1,
+                "text": page_text,
+                "source_type": "page"
+            })
+    
+    pdf_document.close()
+
     return documents
 
 
