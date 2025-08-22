@@ -17,3 +17,6 @@ __pycache__/
 # Secrets
 .env
 *.env
+
+# chromaDB data
+chroma_db
