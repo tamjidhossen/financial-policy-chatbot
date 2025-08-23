@@ -1,7 +1,7 @@
 # File paths
 PDF_FILE_PATH = "Data/Financial_Policy_Document.pdf"
 CHROMA_DB_PATH = "./chroma_db"
-EXTRACTED_CONTENT_FILE = "Data/extracted_content.pdf"
+EXTRACTED_CONTENT_FILE = "Data/extracted_content.md"
 
 
 # Model configs
