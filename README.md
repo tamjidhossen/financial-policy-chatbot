@@ -2,6 +2,8 @@
 
 An intelligent Q&A system for financial policy documents featuring advanced PDF processing, context-aware conversation memory, and hybrid retrieval mechanisms.
 
+---
+
 ## How to Run
 
 ### Prerequisites
@@ -50,6 +52,7 @@ python main.py
 - The system maintains conversation context across multiple questions
 - All answers include page references for verification
 
+---
 
 ## Key Features
 
@@ -71,6 +74,8 @@ python main.py
 - **Dynamic Context**: Adapts response generation based on conversation history
 - **Session Persistence**: Seamless multi-turn conversations with memory retention
 
+---
+
 ## Technology Stack
 
 | Component             | Technology              | Purpose                                 |
@@ -82,6 +87,8 @@ python main.py
 | **Vision Processing** | Gemini Vision API       | Complex table transcription             |
 | **Text Splitting**    | LangChain               | Intelligent document chunking           |
 | **UI**                | Rich                    | Enhanced terminal interface             |
+
+---
 
 ## Implementation Highlights
 
@@ -109,6 +116,8 @@ The sliding window conversation memory system:
 3. **Deduplication**: Removes redundant information to maximize context efficiency
 4. **Context Optimization**: Dynamic chunk selection based on available token budget
 
+---
+
 ## Configuration
 
 Key parameters can be adjusted in `config.py`:
@@ -123,4 +132,3 @@ MEMORY_WINDOW_SIZE = 5               # Conversation history size
 DEFAULT_CHUNK_SIZE = 1000            # Text chunk size
 DEFAULT_CHUNK_OVERLAP = 200          # Overlap between chunks
 ```
-
