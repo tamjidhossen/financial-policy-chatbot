@@ -1,4 +1,4 @@
-# Financial Policy Document Chatbot
+# Financial Policy Chatbot
 
 An intelligent Q&A system for financial policy documents featuring advanced PDF processing, context-aware conversation memory, and hybrid retrieval mechanisms.
 
