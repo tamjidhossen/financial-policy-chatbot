@@ -81,25 +81,30 @@ Finally, the Budget supports community welfare and development. Investments are 
 
 The following table provides the short-term and long-term financial objectives of the Government.
 
-Table 1.2.1 Financial Objectives and Measures
+**Table 1.2.1**
+**Financial Objectives and Measures**
 
-| Short Term Financial Objectives                                                                                              | Long Term Financial Objectives                                         |
-| :--------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------- |
-| Maintain a Triple A credit rating                                                                                            | Maintain Territory infrastructure                                      |
-| Maintain low levels of debt                                                                                                  | Make adequate provision for long-term liabilities                      |
-| Strategic approach to the capital works program                                                                              | Minimise risk to Territory finances and assets                         |
-| Provision of the highest possible standard of Government services, and maintain service levels, having regard to growth and monetary inflation |                                                                        |
-| **Key Measures**                                                                                                             | **Key Measures**                                                       |
-| Maintain a balanced budget over the economic cycle of the current budget estimates from 2005-06 to 2008-09                   | 90% coverage of accrued superannuation liabilities by 2039-2040        |
-| Maintain the capital infrastructure of the Territory                                                                         | Maintain or reduce GGS debt                                            |
-| Maintain net interest cost as a proportion of total own-source revenue for the GGS less than zero                          | Adequate systems and processes in place to recognise and mitigate risk |
-| Maintain levels of taxation as a proportion of GSP                                                                           |                                                                        |
-| Maintain or increase the Territory’s Net Assets                                                                              |                                                                        |
+| Short Term Financial Objectives                                                                                                                   | Long Term Financial Objectives                                     |
+| :------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------- |
+| Maintain a Triple A credit rating                                                                                                                 | Maintain Territory infrastructure                                  |
+| Maintain low levels of debt                                                                                                                       | Make adequate provision for long-term liabilities                  |
+| Strategic approach to the capital works program                                                                                                   | Minimise risk to Territory finances and assets                     |
+| Provision of the highest possible standard of Government services, and maintain service levels, having regard to growth and monetary inflation    |                                                                    |
+| **Key Measures**                                                                                                                                  | **Key Measures**                                                   |
+| Maintain a balanced budget over the economic cycle of the current budget estimates from 2005-06 to 2008-09                                        | 90% coverage of accrued superannuation liabilities by 2039-2040    |
+| Maintain the capital infrastructure of the Territory                                                                                              | Maintain or reduce GGS debt                                        |
+| Maintain net interest cost as a proportion of total own-source revenue for the GGS less than zero                                                 | Adequate systems and processes in place to recognise and mitigate risk |
+| Maintain levels of taxation as a proportion of GSP                                                                                                |                                                                    |
+| Maintain or increase the Territory’s Net Assets                                                                                                   |                                                                    |
 
-Summary of Table 1.2.1: This table outlines the short-term and long-term financial objectives of the government, followed by specific key measures for both categories. The objectives cover areas like credit rating, debt levels, capital works, service provision, infrastructure, and liability management. The key measures detail targets for budget balance (2005-06 to 2008-09), superannuation coverage (by 2039-2040), capital infrastructure, GGS debt, net interest cost, taxation levels, and Net Assets.
+Summary of Table 1.2.1: This table outlines the short-term and long-term financial objectives and key measures for the Government. Short-term objectives include maintaining a Triple A credit rating, low debt, a strategic approach to capital works, and high-standard government services. Long-term objectives focus on Territory infrastructure, provisions for liabilities, and minimizing financial risk. The key measures detail specific targets such as maintaining a balanced budget (2005-06 to 2008-09), capital infrastructure, net interest cost, taxation levels, net assets, achieving 90% coverage of superannuation liabilities by 2039-2040, reducing GGS debt, and implementing risk mitigation systems.
 
 *Maintain a Balanced Budget over the economic cycle*
+
 The balanced budget financial objective is measured by the operating result of the General Government Sector (GGS). A four-year planning horizon recognises that it is not always necessary to deliver surpluses every year without any regard to the broader context of the economy and the service and infrastructure requirements of the community. What is important is that a surplus is delivered over the economic cycle.
+
+---
+*2005-06 Budget Paper No. 3* | 6 | *Financial Policy Objectives and Strategies Statement*
 
 ==================================================
 
@@ -108,44 +113,39 @@ Text:
 
 The Government’s forecast operating result is presented in the following table.
 
-**Table 1.2.2**
-**General Government Sector**
-**2005-06 Budget and Forward Estimates**
+### Table 1.2.2 General Government Sector 2005-06 Budget and Forward Estimates
 
-|                     | 2002-03 | 2003-04 | 2004-05   | 2005-06 | 2006-07  | 2007-08  | 2008-09  |
-| :------------------ | :------ | :------ | :-------- | :------ | :------- | :------- | :------- |
-|                     | Actual  | Actual  | Est. Out. | Budget  | Estimate | Estimate | Estimate |
-|                     | $m      | $m      | $m        | $m      | $m       | $m       | $m       |
-| GGS Operating Result | 154.6   | 70.5    | 52.2      | -91.5   | 0.9      | 39.3     | 73.3     |
-| Aggregate Result 2002-03 to 2005-06 |         |         |           | 185.7   |          |          |          |
-| Aggregate Result 2005-06 to 2008-09 |         |         |           |         |          |          | 22.0     |
+| Item                                   | 2002-03 Actual $m | 2003-04 Actual $m | 2004-05 Est. Out. $m | 2005-06 Budget $m | 2006-07 Estimate $m | 2007-08 Estimate $m | 2008-09 Estimate $m |
+| :------------------------------------- | ----------------: | ----------------: | ------------------: | -----------------: | ------------------: | ------------------: | ------------------: |
+| GGS Operating Result                   |             154.6 |              70.5 |                52.2 |              -91.5 |                 0.9 |                39.3 |                73.3 |
+| Aggregate Result 2002-03 to 2005-06    |                 – |                 – |                   – |              185.7 |                   – |                   – |                   – |
+| Aggregate Result 2005-06 to 2008-09    |                 – |                 – |                   – |                  – |                   – |                   – |                22.0 |
 
-Summary of Table 1.2.2: This table presents the General Government Sector's operating results and forward estimates from 2002-03 to 2008-09. It includes actual figures for earlier years, estimated outcomes, budget figures, and forward estimates for operating results, alongside two aggregated result figures for different periods.
+**Summary of Table 1.2.2:** This table presents the General Government Sector's operating results and aggregate results for various periods, showing actual, estimated outturn, budgeted, and estimated figures from 2002-03 to 2008-09, all in millions of dollars. The GGS Operating Result shows a trend from surpluses in earlier years to a deficit in the 2005-06 budget, then returning to projected surpluses. Separate aggregate results are provided for two distinct multi-year periods.
 
 While the 2005-06 Budget is in deficit, the Government has introduced significant measures included to return the Budget to surplus, such as savings measures aimed at improved efficiency.
 
-*Maintain the Capital Infrastructure of the Territory*
+_Maintain the Capital Infrastructure of the Territory_
+
 The capital infrastructure objective of the Territory is measured through the value of current and non-current works in progress, and the value of property, plant and equipment in the Balance Sheet of the Territory.
 
-The Government’s target for this measure is to demonstrate and provide for the maintenance of the existing level of physical assets (as at 30 June 2005).
+The Government's target for this measure is to demonstrate and provide for the maintenance of the existing level of physical assets (as at 30 June 2005).
 
-**Table 1.2.3**
-**General Government Sector**
-**Capital Infrastructure**
+### Table 1.2.3 General Government Sector Capital Infrastructure
 
-|                                    | 2004-05   | 2005-06   | 2006-07  | 2007-08  | 2008-09  |
-| :--------------------------------- | :-------- | :-------- | :------- | :------- | :------- |
-|                                    | Est. Out. | Budget    | Estimate | Estimate | Estimate |
-|                                    | $m        | $m        | $m       | $m       | $m       |
-| Non-Current Capital Works in Progress | 136       | 218       | 263      | 63       | 41       |
-| Property, Plant and Equipment      | 9 905     | 10 205    | 10 437   | 10 847   | 11 034   |
-| **Sub Total**                      | **10 040**| **10 423**| **10 701**| **10 910**| **11 075**|
+| Item                                | 2004-05 Est. Out. $m | 2005-06 Budget $m | 2006-07 Estimate $m | 2007-08 Estimate $m | 2008-09 Estimate $m |
+| :---------------------------------- | ------------------: | -----------------: | ------------------: | ------------------: | ------------------: |
+| Non-Current Capital Works in Progress |                 136 |               218 |                 263 |                  63 |                  41 |
+| Property, Plant and Equipment       |                9905 |             10205 |               10437 |               10847 |               11034 |
+| **Sub Total**                       |           **10040** |         **10423** |           **10701** |           **10910** |           **11075** |
 
-Summary of Table 1.2.3: This table details the General Government Sector's capital infrastructure, including estimated outcomes, budget figures, and forward estimates for non-current capital works in progress and property, plant, and equipment, as well as a sub-total for these categories from 2004-05 to 2008-09.
+**Summary of Table 1.2.3:** This table details the General Government Sector's capital infrastructure, including Non-Current Capital Works in Progress and Property, Plant and Equipment, from the 2004-05 estimated outturn to the 2008-09 estimate, with all figures in millions of dollars. It indicates a consistent growth in Property, Plant and Equipment, leading to an increasing total capital infrastructure over the forecast period, while capital works in progress fluctuate.
 
-*Maintain net interest cost as a proportion of total own-source revenue for the General Government Sector less than zero*
+_Maintain net interest cost as a proportion of total own-source revenue for the General Government Sector less than zero_
+
 Net interest is the difference between interest earned on investments and interest paid on debt. Total own-source revenue is the difference between Total Revenue and Commonwealth Grants in the Operating Statement.
 
+---
 2005-06 Budget Paper No. 3 7 Financial Policy Objectives and Strategies Statement
 
 ==================================================
@@ -157,29 +157,29 @@ This objective provides an indication of the Government's ability to meet its de
 
 ### Table 1.2.4 General Government Sector Net Interest Expense as a percentage of Own-Source Revenue
 
-| | 2004-05 Est. Out. ($m) | 2005-06 Budget ($m) | 2006-07 Estimate ($m) | 2007-08 Estimate ($m) | 2008-09 Estimate ($m) |
-|:---------------------------------------|-------------------------:|----------------------:|----------------------:|----------------------:|----------------------:|
-| Interest Expense | 47 | 49 | 49 | 52 | 54 |
-| Interest Revenue | 78 | 69 | 58 | 54 | 55 |
-| **Net Interest Cost** | **-31** | **-20** | **-8** | **-2** | **-2** |
-| Own Source Revenue | 1 617 | 1 568 | 1 669 | 1 763 | 1 857 |
-| **Net Interest Cost as a % of Own Source Revenue** | **-1.9%** | **-1.3%** | **-0.5%** | **-0.1%** | **-0.1%** |
+| Item                                               | 2004-05 Est. Out. | 2005-06 Budget | 2006-07 Estimate | 2007-08 Estimate | 2008-09 Estimate |
+| :------------------------------------------------- | ----------------: | --------------: | ----------------: | ----------------: | ----------------: |
+| Interest Expense ($m)                              | 47                | 49              | 49                | 52                | 54                |
+| Interest Revenue ($m)                              | 78                | 69              | 58                | 54                | 55                |
+| **Net Interest Cost ($m)**                         | -31               | -20             | -8                | -2                | -2                |
+| Own Source Revenue ($m)                            | 1 617             | 1 568           | 1 669             | 1 763             | 1 857             |
+| **Net Interest Cost as a % of Own Source Revenue** | -1.9%             | -1.3%           | -0.5%             | -0.1%             | -0.1%             |
 
-Summary of Table 1.2.4: This table presents the Net Interest Expense of the General Government Sector as a percentage of Own-Source Revenue from 2004-05 to 2008-09. It details Interest Expense, Interest Revenue, Net Interest Cost, Own Source Revenue, and the calculated Net Interest Cost as a percentage of Own Source Revenue, all in millions of dollars ($m) except for the final percentage row.
+Summary of Table 1.2.4: This table details the General Government Sector's net interest expense as a percentage of own-source revenue from 2004-05 to 2008-09. It shows Interest Expense, Interest Revenue, Net Interest Cost, Own Source Revenue (all in $m), and the Net Interest Cost as a percentage of Own Source Revenue. The Net Interest Cost is projected to remain negative and decrease over the years, indicating effective debt management.
 
 *Maintain levels of taxation as a proportion of GSP*
 
-The objective of maintaining taxation levels as a proportion of GSP (Gross State Product) ensures that levels of tax burden on the community do not increase disproportionately to the level of economic activity of the Territory.
+The objective of maintaining taxation levels as a proportion of GSP (Gross State Product) ensures that levels of tax burden on the community do not increase disproportionally to the level of economic activity of the Territory.
 
 ### Table 1.2.5 General Government Sector Proportion of Taxation Revenue to Gross State Product
 
-| | 2004-05 Est. Out. ($m) | 2005-06 Budget ($m) | 2006-07 Estimate ($m) | 2007-08 Estimate ($m) | 2008-09 Estimate ($m) |
-|:---------------------------------------|-------------------------:|----------------------:|----------------------:|----------------------:|----------------------:|
-| Taxation | 692 | 729 | 778 | 833 | 889 |
-| GSP | 16 944 | 17 637 | 18 349 | 19 240 | 20 214 |
-| **Taxation as a % of GSP** | **4.1%** | **4.1%** | **4.2%** | **4.3%** | **4.4%** |
+| Item                             | 2004-05 Est. Out. | 2005-06 Budget | 2006-07 Estimate | 2007-08 Estimate | 2008-09 Estimate |
+| :------------------------------- | ----------------: | --------------: | ----------------: | ----------------: | ----------------: |
+| Taxation ($m)                    | 692               | 729             | 778               | 833               | 889               |
+| GSP ($m)                         | 16 944            | 17 637          | 18 349            | 19 240            | 20 214            |
+| **Taxation as a % of GSP**       | 4.1%              | 4.1%            | 4.2%              | 4.3%              | 4.4%              |
 
-Summary of Table 1.2.5: This table illustrates the General Government Sector's proportion of Taxation Revenue to Gross State Product (GSP) from 2004-05 to 2008-09. It provides figures for Taxation and GSP in millions of dollars ($m), and calculates Taxation as a percentage of GSP for each financial year.
+Summary of Table 1.2.5: This table presents the General Government Sector's taxation revenue and Gross State Product (GSP) in millions of dollars, along with taxation as a percentage of GSP, for the years 2004-05 to 2008-09. It indicates a slight increase in taxation as a percentage of GSP over the projected period.
 
 *Maintain or increase the Territory's Net Assets*
 
@@ -192,48 +192,41 @@ This objective's aim is to budget for an increase (or maintenance) of the level 
 === Page 5 ===
 Text:
 
-Here is the well-formatted markdown content from the provided PDF page:
+### Table 1.2.6
+Total Territory Maintenance of Net Assets
 
-Table 1.2.6
-Total Territory
-Maintenance of Net Assets
+| | 2004-05 (Est. Out. $m) | 2005-06 (Budget $m) | 2006-07 (Estimate $m) | 2007-08 (Estimate $m) | 2008-09 (Estimate $m) |
+|:---|---:|---:|---:|---:|---:|
+| Total Assets | 13 340 | 13 637 | 14 025 | 14 446 | 14 905 |
+| Total Liabilities | 4 036 | 4 302 | 4 555 | 4 789 | 5 027 |
+| **Total Territory Net Assets** | **9 304** | **9 335** | **9 470** | **9 657** | **9 878** |
 
-| | 2004-05 Est. Out. ($m) | 2005-06 Budget ($m) | 2006-07 Estimate ($m) | 2007-08 Estimate ($m) | 2008-09 Estimate ($m) |
-|:--------------------------|-----------------------:|--------------------:|-----------------------:|-----------------------:|-----------------------:|
-| Total Assets              | 13 340                 | 13 637              | 14 025                 | 14 446                 | 14 905                 |
-| Total Liabilities         | 4 036                  | 4 302               | 4 555                  | 4 789                  | 5 027                  |
-| **Total Territory Net Assets** | **9 304**              | **9 335**           | **9 470**              | **9 657**              | **9 878**              |
-
-**Summary of Table 1.2.6:** This table presents the total assets, total liabilities, and resulting total territory net assets for the period from 2004-05 (estimated outturn) to 2008-09 (estimated figures), with all values expressed in millions of dollars ($m).
+Summary of Table 1.2.6: This table outlines the total assets, total liabilities, and net assets for the Territory from 2004-05 (estimated actual) to 2008-09 (estimated forecast), with all financial figures presented in millions of dollars ($m). The table projects a gradual increase in total assets, total liabilities, and consequently, total territory net assets over this five-year period.
 
 *90% coverage of accrued superannuation liabilities by 2039-40*
 
 This objective is measured by the extent to which the accrued and projected superannuation liability is funded. The Government has a commitment to fund 90% of accrued superannuation liabilities by 30 June 2040. In light of the significantly lower projected liabilities following the introduction of the PSS accumulation scheme, this target date will be reviewed during 2005-06 with a view to determining whether an earlier date should be adopted. The outcome of this process will be reported in the 2006-07 Budget.
 
-Table 1.2.7
+### Table 1.2.7
 Percentage funding of Superannuation Liabilities
 
 | 30 June | Assets ($'000) | Liabilities ($'000) | % Funded |
-|:--------|-----------------:|--------------------:|----------:|
-| **2005** | 1 447 094        | 2 480 943           | 58%       |
-| **2006** | 1 626 868        | 2 707 023           | 60%       |
-| **2007** | 1 829 509        | 2 927 773           | 62%       |
-| **2008** | 2 042 190        | 3 146 890           | 65%       |
-| **2009** | 2 266 537        | 3 365 107           | 67%       |
+|:---|---:|---:|---:|
+| **2005** | 1 447 094 | 2 480 943 | 58% |
+| **2006** | 1 626 868 | 2 707 023 | 60% |
+| **2007** | 1 829 509 | 2 927 773 | 62% |
+| **2008** | 2 042 190 | 3 146 890 | 65% |
+| **2009** | 2 266 537 | 3 365 107 | 67% |
 
-**Summary of Table 1.2.7:** This table details the assets, liabilities, and the percentage funded for superannuation liabilities as of 30 June each year from 2005 to 2009, with monetary values presented in thousands of dollars ($'000).
+Summary of Table 1.2.7: This table details the percentage funding of superannuation liabilities for the Territory as of 30 June for the years 2005 through 2009. It presents the total assets and total liabilities associated with superannuation in thousands of dollars ($'000) and shows a consistent year-on-year increase in the percentage of liabilities funded, moving from 58% in 2005 to 67% in 2009.
 
-*Principles of Responsible Financial Management*
+### Principles of Responsible Financial Management
 
 The key financial measures established by the Government satisfy various principles of responsible financial management specified within the *Financial Management Act 1996*, these are:
 
 (a) ensuring that the total liabilities of the Territory are at prudent levels to provide a buffer against factors that may impact adversely on the level of total Territory liabilities in the future, and ensuring that, until prudent levels have been achieved, the total operating expenses of the Territory in each financial year are less than its operating income levels in the same financial year;
 
 (b) when prudent levels of total Territory liabilities have been achieved, maintaining the levels by ensuring that, on average, over a reasonable period of time, the total operating expenses of the Territory do not exceed its operating income levels;
-
-2005-06 Budget Paper No. 3
-9
-*Financial Policy Objectives and Strategies Statement*
 
 ==================================================
 
