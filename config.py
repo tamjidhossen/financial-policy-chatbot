@@ -10,7 +10,7 @@ GENERATION_MODEL = "models/gemini-2.5-flash"
 
 
 # DB configs
-COLLECTION_NAME = "policy_documents"
+COLLECTION_NAME = "financial_policy_documents"
 
 
 # Chunk configs
