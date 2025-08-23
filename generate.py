@@ -26,14 +26,13 @@ def create_context(chunks: List[Dict[str, any]], max_length: int = 3000) -> str:
     return "\n\n".join(context_parts)
 
 
-def generate_answer(query: str, chunks: List[Dict[str, any]], API_KEY: str, temperature: float = 0.1) -> Dict[str, any]:
+def generate_answer(query: str, chunks: List[Dict[str, any]], API_KEY: str, conversation_history: str = "", temperature: float = 0.1) -> Dict[str, any]:
 
     genai.configure(api_key=API_KEY)
     
     # Create context from chunks
     context = create_context(chunks)
     
-    # Build the prompt
     prompt = f"""You are a helpful assistant that answers questions based on a financial policy document.
 
     INSTRUCTIONS:
@@ -50,6 +49,11 @@ def generate_answer(query: str, chunks: List[Dict[str, any]], API_KEY: str, temp
     5. Structure your response clearly with proper markdown formatting
     6. When presenting tables, ensure they are properly formatted with headers and separators
     7. The whole response should be a proper markdown
+    8. Consider the conversation history when answering, but always prioritize the provided context
+
+    HISTORY:
+    {conversation_history}
+    
     CONTEXT:
     {context}
 

@@ -4,6 +4,45 @@ import re
 from rich.console import Console
 from rich.markdown import Markdown
 from rich.panel import Panel
+from config import MEMORY_WINDOW_SIZE
+
+
+class ConversationMemory:
+    
+    def __init__(self, window_size: int = MEMORY_WINDOW_SIZE):
+        self.window_size = window_size
+        self.conversation_history = []  # List of {'user': question, 'assistant': answer}
+    
+    def add_exchange(self, user_question: str, assistant_response: str):
+        """Add a user-assistant exchange to memory."""
+        self.conversation_history.append({
+            'user': user_question,
+            'assistant': assistant_response
+        })
+        
+        # Maintain sliding window
+        if len(self.conversation_history) > self.window_size:
+            self.conversation_history.pop(0)  # Remove oldest
+    
+    def get_history(self) -> List[dict]:
+        return self.conversation_history.copy()
+    
+    def clear_history(self):
+        self.conversation_history.clear()
+    
+    def get_formatted_history(self) -> str:
+        if not self.conversation_history:
+            return ""
+        
+        formatted = []
+        for exchange in self.conversation_history:
+            formatted.append(f"User: {exchange['user']}")
+            formatted.append(f"Assistant: {exchange['assistant']}")
+        
+        return "\n\n".join(formatted)
+    
+    def is_empty(self) -> bool:
+        return len(self.conversation_history) == 0
 
 
 def chunk_text(text: str, chunk_size: int = 1000, overlap: int = 200) -> List[str]:

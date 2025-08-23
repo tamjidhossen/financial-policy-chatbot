@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from indexing import index_pdf
 from retrieval import retrieve_relevant_chunks, rerank_chunks, deduplicate_chunks
 from generate import generate_answer
-from utils import render_markdown_response, print_thinking_animation
+from utils import render_markdown_response, print_thinking_animation, ConversationMemory
 from config import *
 from rich.console import Console
 from rich.prompt import Prompt
@@ -33,6 +33,9 @@ def run_chatbot():
         collection_name, chunk_count = index_pdf(PDF_FILE_PATH, API_KEY)
         console.print(f"✓ Index created successfully with {chunk_count} chunks\n")
     
+    # Initialize conversation memory
+    memory = ConversationMemory()
+    
     # Start chatbot loop
     console.print("=" * 60)
     console.print("[bold cyan]Financial Policy Document Q&A Chatbot[/bold cyan]")
@@ -43,7 +46,7 @@ def run_chatbot():
     while True:
         # Get user input
         try:
-            query = Prompt.ask("Your question", console=console).strip()
+            query = Prompt.ask("[blue]>>>[/blue]", console=console).strip()
         except KeyboardInterrupt:
             console.print("\n")
             break
@@ -74,13 +77,17 @@ def run_chatbot():
                 result = generate_answer(
                     query=query,
                     chunks=chunks,
-                    API_KEY=API_KEY
+                    API_KEY=API_KEY,
+                    conversation_history=memory.get_formatted_history()
                 )
             
             # Display answer
-            console.print("\n" + "─" * 60)
+            console.print()  # Just add a newline
             render_markdown_response(result['answer'])
-            console.print("─" * 60)
+            console.print("[blue]" + "─" * 60 + "[/blue]")
+            
+            # Add exchange to memory
+            memory.add_exchange(query, result['answer'])
             
         except KeyboardInterrupt:
             console.print("\n")

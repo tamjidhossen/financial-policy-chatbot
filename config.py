@@ -27,6 +27,10 @@ MAX_CHUNKS_FOR_GENERATION = 5
 DEFAULT_SIMILARITY_THRESHOLD = 0.9
 
 
+# Memory config
+MEMORY_WINDOW_SIZE = 5  # Keep last 5 conversation pairs
+
+
 # Misc. 
 EXIT_COMMANDS = ['exit', 'quit', 'q']
 CHATBOT_TITLE = "Financial Policy Document Q&A Chatbot"
