@@ -5,3 +5,5 @@ pillow
 pymupdf
 pymupdf4llm
 langchain-text-splitters
+rich
+markdown

@@ -39,16 +39,24 @@ def generate_answer(query: str, chunks: List[Dict[str, any]], API_KEY: str, temp
     INSTRUCTIONS:
     1. Answer ONLY based on the provided context
     2. If the information is not in the context, say "I cannot find this information in the document"
-    3. Always cite the page numbers when referencing information using [Page X] format
-    5. Use bullet points for lists when appropriate
-
+    3. Always cite the page numbers when referencing information using **[Page X]** format (bold)
+    4. Format your response using markdown:
+       - Use **bold** for important terms and page references
+       - Use *italics* for emphasis
+       - Use bullet points (-) for lists
+       - Use numbered lists (1.) when order matters
+       - Use `code` formatting for specific policy numbers or codes
+       - For tables, use proper markdown table format with | separators and alignment
+    5. Structure your response clearly with proper markdown formatting
+    6. When presenting tables, ensure they are properly formatted with headers and separators
+    7. The whole response should be a proper markdown
     CONTEXT:
     {context}
 
     QUESTION:
     {query}
 
-    ANSWER:"""
+    ANSWER (in markdown format):"""
     
     # Use Gemini model for generation
     model = genai.GenerativeModel(GENERATION_MODEL)
