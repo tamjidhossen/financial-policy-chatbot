@@ -11,6 +11,14 @@ def chunk_text(text: str, chunk_size: int = 1000, overlap: int = 200) -> List[st
         chunk_size=chunk_size,
         chunk_overlap=overlap,
         length_function=len,
+        is_separator_regex=False,
+        separators = [
+            "\n\n---TABLE_END---\n\n",   # Split after complete tables
+            "\n## ",                     # Section headers  
+            "\n### ",                    # Subsection headers
+            "\n\n",                      # Double newlines 
+            "\n",                        # Single newlines
+        ]
     )
     
     # Split the text

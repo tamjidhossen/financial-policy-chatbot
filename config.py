@@ -15,8 +15,8 @@ COLLECTION_NAME = "financial_policy_documents"
 
 
 # Chunk configs
-DEFAULT_CHUNK_SIZE = 800
-DEFAULT_CHUNK_OVERLAP = 100
+DEFAULT_CHUNK_SIZE = 1000
+DEFAULT_CHUNK_OVERLAP = 200
 # Embedding batch size for gemini rate limit
 EMBEDDING_BATCH_SIZE = 10
 

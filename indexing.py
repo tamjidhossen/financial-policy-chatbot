@@ -45,16 +45,27 @@ def extract_table_with_gemini(pdf_path: str, page_num: int, API_KEY: str) -> str
     
     prompt = """
     Convert this PDF page content to well-formatted markdown. Pay special attention to:
-    
-    1. Extract all tables with proper markdown table formatting
-    2. Preserve all numerical data accurately
-    3. Include table headers and structure clearly
-    4. After each table, provide a brief summary of what the table contains (Ex: Summary of Table 1.2.3: )
-    5. Keep all other text content as is
-    6. Use proper markdown headers and formatting
-    
-    Make sure tables are properly aligned and readable. The summary should help with information retrieval.
+
+    1. Extract all tables with proper markdown table formatting.
+    2. Preserve all numerical data accurately.
+    3. Include table headers and structure clearly.
+    4. After each table, provide a detailed summary of what the table contains (e.g., "Summary of Table 1.2.3: ...").
+    5. Keep all other non-table text exactly as is.
+    6. Use proper markdown headers and formatting.
+
+    IMPORTANT:  
+    Wrap each complete table (title, headers, and rows) with special markers:  
+    ---TABLE_START---  
+    ### Table Title  
+    [table with unnecessary whitespace and indentation removed, concise and properly aligned]  
+    ---TABLE_END---  
+    [summary text]
+
+    Notes:  
+    - Only the table itself should be made concise, stripped of any whitespace to reduce its size but it must remain a valid markdown table with pipes.  
+    - Do not shorten or modify the summary or other text.  
     """
+
     
     try:
         model = genai.GenerativeModel(TABLE_EXTRACTION_MODEL)
