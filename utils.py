@@ -14,7 +14,6 @@ def clean_text(text: str) -> str:
     return text.strip()
 
 def clean_text_with_paragraphs(text: str) -> str:
-    """Clean text while preserving paragraph structure"""
     # Remove excessive whitespace but keep paragraph breaks
     text = re.sub(r' +', ' ', text)  # Multiple spaces to single space
     text = re.sub(r'\n +', '\n', text)  # Remove spaces at start of lines
@@ -37,17 +36,6 @@ def chunk_text(text: str, chunk_size: int = 1000, overlap: int = 200) -> List[st
         chunk_size=chunk_size,
         chunk_overlap=overlap,
         length_function=len,
-        is_separator_regex=False,
-        separators=[
-            "\n\n",  # Paragraphs
-            "\n",    # Lines
-            ". ",    # Sentences
-            "! ",    # Exclamations
-            "? ",    # Questions
-            ", ",    # Clauses
-            " ",     # Words
-            ""       # Characters
-        ]
     )
     
     # Split the text
