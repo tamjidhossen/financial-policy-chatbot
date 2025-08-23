@@ -1,5 +1,7 @@
 google-generativeai
 python-dotenv
 chromadb
+pillow
+pymupdf
 pymupdf4llm
 langchain-text-splitters

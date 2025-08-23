@@ -4,11 +4,68 @@ import chromadb
 import google.generativeai as genai
 from utils import chunk_documents
 import os
+import re
+import fitz  # PyMuPDF
+import io
+from PIL import Image
 from config import *
 
 
-def extract_text_from_pdf(pdf_path: str) -> List[Dict[str, any]]:
+def has_table(page_text: str) -> bool:
+    # Look for table patterns like Table X.X.X
+    table_patterns = [
+        r'\*\*Table\s+\d+\.\d+\.\d+\*\*',  # **Table 1.2.3**
+        r'\|Table\s+\d+\.\d+\.\d+.*\|',    # |Table 1.2.7 ...|
+        r'Table\s+\d+\.\d+\.\d+'           # Table 1.2.3
+    ]
+    
+    for pattern in table_patterns:
+        if re.search(pattern, page_text):
+            return True
+    return False
 
+
+def extract_table_with_gemini(pdf_path: str, page_num: int, API_KEY: str) -> str:
+
+    genai.configure(api_key=API_KEY)
+    
+    # Open PDF and extract page as image
+    doc = fitz.open(pdf_path)
+    page = doc[page_num - 1]  # 0 based indexing
+    
+    # Convert page to image
+    mat = fitz.Matrix(2.0, 2.0)  # 2x zoom for better quality
+    pix = page.get_pixmap(matrix=mat)
+    img_data = pix.tobytes("png")
+    
+    # Create PIL Image
+    image = Image.open(io.BytesIO(img_data))
+    
+    doc.close()
+    
+    prompt = """
+    Convert this PDF page content to well-formatted markdown. Pay special attention to:
+    
+    1. Extract all tables with proper markdown table formatting
+    2. Preserve all numerical data accurately
+    3. Include table headers and structure clearly
+    4. After each table, provide a brief summary of what the table contains (Ex: Summary of Table 1.2.3: )
+    5. Keep all other text content as is
+    6. Use proper markdown headers and formatting
+    
+    Make sure tables are properly aligned and readable. The summary should help with information retrieval.
+    """
+    
+    try:
+        model = genai.GenerativeModel(TABLE_EXTRACTION_MODEL)
+        response = model.generate_content([prompt, image])
+        return response.text
+    except Exception as e:
+        print(f"Error processing page {page_num} with Gemini: {e}")
+        return None
+
+
+def extract_text_from_pdf(pdf_path: str, API_KEY: str = None) -> List[Dict[str, any]]:
     # Extract markdown content from PDF
     markdown_content = pymupdf4llm.to_markdown(pdf_path, page_chunks=True)
 
@@ -16,6 +73,17 @@ def extract_text_from_pdf(pdf_path: str) -> List[Dict[str, any]]:
     documents = []
     for page_num, page_dict in enumerate(markdown_content, 1):
         page_text = page_dict.get('text', '')
+        
+        # Check if page has tables
+        if has_table(page_text):
+            print(f"Page {page_num} contains tables, processing with Gemini...")
+            enhanced_text = extract_table_with_gemini(pdf_path, page_num, API_KEY)
+            if enhanced_text:
+                page_text = enhanced_text
+                print(f"Successfully enhanced page {page_num} with Gemini")
+            else:
+                print(f"Failed to enhance page {page_num}, using original text")
+        
         documents.append({
             "page_number": page_num,
             "text": page_text,
@@ -72,7 +140,7 @@ def create_vector_store(persist_directory: str = CHROMA_DB_PATH) -> chromadb.Col
 def index_pdf(pdf_path: str, API_KEY: str, chunk_size: int = DEFAULT_CHUNK_SIZE, chunk_overlap: int = DEFAULT_CHUNK_OVERLAP) -> Tuple[str, int]:
 
     print("Extracting text from PDF...")
-    documents = extract_text_from_pdf(pdf_path)
+    documents = extract_text_from_pdf(pdf_path, API_KEY)
     
     if not documents:
         print("No content extracted from PDF!")
@@ -84,9 +152,9 @@ def index_pdf(pdf_path: str, API_KEY: str, chunk_size: int = DEFAULT_CHUNK_SIZE,
     with open(EXTRACTED_CONTENT_FILE, "w", encoding="utf-8") as f:
         for content in documents:
             f.write(f"=== Page {content['page_number']} ===\n")
-            f.write(f"Text:\n{content['text']}\n")
+            f.write(f"Text:\n\n{content['text']}\n")
             f.write("\n" + "="*50 + "\n\n")
-    
+
     # Filter out empty pages for chunking (but keep page numbers in metadata)
     non_empty_documents = [doc for doc in documents if doc['text'].strip()]
     print(f"Found {len(non_empty_documents)} non-empty pages to chunk")
@@ -150,6 +218,6 @@ if __name__ == "__main__":
         raise ValueError("GEMINI_API_KEY not found in environment variables")
     
     
-    # collection_name, chunk_count = index_pdf(PDF_FILE_PATH, API_KEY)
+    # index_pdf(PDF_FILE_PATH, API_KEY)
     collection_name, chunk_count = index_pdf(PDF_FILE_PATH, API_KEY)
     print(f"\nIndexing complete! Collection: {collection_name}, Chunks: {chunk_count}")

@@ -7,6 +7,7 @@ EXTRACTED_CONTENT_FILE = "Data/extracted_content.md"
 # Model configs
 EMBEDDING_MODEL = "models/gemini-embedding-001"
 GENERATION_MODEL = "models/gemini-2.5-flash"
+TABLE_EXTRACTION_MODEL = "models/gemini-2.5-flash"
 
 
 # DB configs

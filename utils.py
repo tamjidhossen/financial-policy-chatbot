@@ -1,30 +1,5 @@
 from typing import List
-import re
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-
-
-def clean_text(text: str) -> str:
-    if not text:
-        return ""
-    
-    # Normalize whitespace
-    text = re.sub(r'\s+', ' ', text)
-    text = re.sub(r'\n\s*\n', '\n', text)
-    
-    return text.strip()
-
-def clean_text_with_paragraphs(text: str) -> str:
-    # Remove excessive whitespace but keep paragraph breaks
-    text = re.sub(r' +', ' ', text)  # Multiple spaces to single space
-    text = re.sub(r'\n +', '\n', text)  # Remove spaces at start of lines
-    text = re.sub(r' +\n', '\n', text)  # Remove spaces at end of lines
-    text = re.sub(r'\n{3,}', '\n\n', text)  # Max 2 consecutive newlines
-    
-    # Fix common PDF extraction issues
-    text = re.sub(r'([a-z])([A-Z])', r'\1 \2', text)  # Missing spaces between words
-    text = re.sub(r'([.!?])([A-Z])', r'\1 \2', text)  # Missing spaces after sentences
-    
-    return text.strip()
 
 
 def chunk_text(text: str, chunk_size: int = 1000, overlap: int = 200) -> List[str]:
