@@ -5,6 +5,7 @@ import chromadb
 import google.generativeai as genai
 from utils import clean_text, chunk_text, chunk_documents, clean_text_with_paragraphs
 import os
+from config import *
 
 def extract_text_from_pdf(pdf_path: str) -> List[Dict[str, any]]:
 
@@ -49,43 +50,32 @@ def extract_text_from_pdf(pdf_path: str) -> List[Dict[str, any]]:
         page_text = clean_text_with_paragraphs(page_text)
         
         # Add page number to each page
-        if page_text.strip():
-            documents.append({
-                "page_number": page_num + 1,
-                "text": page_text,
-                "source_type": "page"
-            })
-        else:
-            documents.append({
-                "page_number": page_num + 1,
-                "text": " ",
-                "source_type": "page"
-            })
+
+        documents.append({
+            "page_number": page_num + 1,
+            "text": page_text,
+            "source_type": "page"
+        })
+     
     
     pdf_document.close()
 
     return documents
 
 
-def get_embeddings(texts: List[str], api_key: str) -> List[List[float]]:
-
-    genai.configure(api_key=api_key)
+def get_embeddings(texts: List[str], API_KEY: str) -> List[List[float]]:
+    genai.configure(api_key=API_KEY)
     
     embeddings = []
-    model = "models/embedding-001"
+    model = EMBEDDING_MODEL
     
     # Process in batches to avoid rate limits
-    batch_size = 10
+    batch_size = EMBEDDING_BATCH_SIZE
     for i in range(0, len(texts), batch_size):
-
-        batch = []
-        end_index = min(i + batch_size, len(texts))
+        batch_texts = texts[i:i + batch_size]
         
-        for j in range(i, end_index):
-            batch.append(texts[j])
-
         # Embed each text in the batch
-        for text in batch:
+        for text in batch_texts:
             result = genai.embed_content(
                 model=model,
                 content=text,
@@ -96,31 +86,34 @@ def get_embeddings(texts: List[str], api_key: str) -> List[List[float]]:
     return embeddings
 
 
-def create_vector_store(persist_directory: str = "./chroma_db") -> chromadb.Collection:
+def create_vector_store(persist_directory: str = CHROMA_DB_PATH) -> chromadb.Collection:
 
     client = chromadb.PersistentClient(path=persist_directory)
     
     # Delete existing collection if it exists (for clean indexing)
     collection_path = os.path.join(persist_directory, "chroma.sqlite3")
     if os.path.exists(collection_path):
-        existing_collections = [col.name for col in client.list_collections()]
-        if "policy_documents" in existing_collections:
-            client.delete_collection(name="policy_documents")
+        existing_collections = []
+        for col in client.list_collections():
+            existing_collections.append(col.name)
+        if COLLECTION_NAME in existing_collections:
+            client.delete_collection(name=COLLECTION_NAME)
     
     collection = client.create_collection(
-        name="policy_documents",
+        name=COLLECTION_NAME,
         metadata={"hnsw:space": "cosine"}
     )
     
     return collection
 
 
-def index_pdf(pdf_path: str, api_key: str, chunk_size: int = 800, chunk_overlap: int = 100) -> Tuple[str, int]:
+def index_pdf(pdf_path: str, API_KEY: str, chunk_size: int = DEFAULT_CHUNK_SIZE, chunk_overlap: int = DEFAULT_CHUNK_OVERLAP) -> Tuple[str, int]:
 
     print("Extracting text from PDF...")
     documents = extract_text_from_pdf(pdf_path)
 
-    with open("Data/extracted_content.pdf", "w", encoding="utf-8") as f:
+    # saving the extracted texts (optional)
+    with open(EXTRACTED_CONTENT_FILE, "w", encoding="utf-8") as f:
         for i, content in enumerate(documents):
             f.write(f"=== Content {i+1} ===\n")
             f.write(f"Page: {content['page_number']}\n")
@@ -129,7 +122,7 @@ def index_pdf(pdf_path: str, api_key: str, chunk_size: int = 800, chunk_overlap:
             f.write("\n" + "="*50 + "\n\n")
 
     
-    # Use the new chunk_documents function for better metadata handling
+    # Chunking the document
     print(f"Chunking documents with RecursiveCharacterTextSplitter...")
     chunks_to_index = chunk_documents(documents, chunk_size, chunk_overlap)
     
@@ -149,18 +142,23 @@ def index_pdf(pdf_path: str, api_key: str, chunk_size: int = 800, chunk_overlap:
     
     if not chunks_to_index:
         print("No content to index!")
-        return "policy_documents", 0
+        return COLLECTION_NAME, 0
     
     print(f"Generating embeddings for {len(chunks_to_index)} chunks...")
-    texts = [chunk["text"] for chunk in chunks_to_index]
-    embeddings = get_embeddings(texts, api_key)
+    texts = []
+    for chunk in chunks_to_index:
+        texts.append(chunk["text"])
+    embeddings = get_embeddings(texts, API_KEY)
     
     print("Creating vector store...")
     collection = create_vector_store()
     
     # Add to ChromaDB
-    ids = [chunk["id"] for chunk in chunks_to_index]
-    metadatas = [chunk["metadata"] for chunk in chunks_to_index]
+    ids = []
+    metadatas = []
+    for chunk in chunks_to_index:
+        ids.append(chunk["id"])
+        metadatas.append(chunk["metadata"])
     
     collection.add(
         documents=texts,
@@ -170,20 +168,19 @@ def index_pdf(pdf_path: str, api_key: str, chunk_size: int = 800, chunk_overlap:
     )
     
     print(f"Successfully indexed {len(chunks_to_index)} chunks")
-    return "policy_documents", len(chunks_to_index)
+    return COLLECTION_NAME, len(chunks_to_index)
 
-
+# For manually running indexing.py
 if __name__ == "__main__":
     from dotenv import load_dotenv
     
     load_dotenv()
     
-    api_key = os.getenv("GEMINI_API_KEY")
-    if not api_key:
+    API_KEY = os.getenv("GEMINI_API_KEY")
+    if not API_KEY:
         raise ValueError("GEMINI_API_KEY not found in environment variables")
     
-    pdf_path = "Data/Financial_Policy_Document.pdf"
     
-    collection_name, num_chunks = index_pdf(pdf_path, api_key)
+    collection_name, chunk_count = index_pdf(PDF_FILE_PATH, API_KEY)
     
-    print(f"\nIndexing complete! Collection: {collection_name}, Chunks: {num_chunks}")
+    print(f"\nIndexing complete! Collection: {collection_name}, Chunks: {chunk_count}")
